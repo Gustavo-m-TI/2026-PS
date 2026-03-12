@@ -1,116 +1,94 @@
-# ===================================================
-# SISTEMA DE CÁLCULO DE NOTAS E SITUAÇÃO ACADÊMICA
-# ---------------------------------------------------
+# ==================================================
+# SISTEMA DE BIBLIOTECA
+# ==================================================
 # Disciplina : Programação de Sistemas (PS)
-# Aula       : 06 - Revisão: Funções (Nível Básico + Intermediário)
-# Autor      : [SEU NOME AQUI]
-# Data       : [DATA DE HOJE]
-# Repositório: https://github.com/[SEU-USUARIO]/2026-PS
+# Aula       : 05 - Revisão: Estruturas de dados
+# Autor      : [Gustavo Maciel da Silva]
+# Data       : [12.03.2026]
+# Repositório: https://github.com/[Gustavo-m-TI]/2026-PS
 # ===================================================
 #
 # DESCRIÇÃO:
-# Calcula a média de notas de alunos e verifica sua
-# situação acadêmica conforme critérios IFPR.
-# Processa múltiplos alunos com validação de entrada.
-# ===================================================
+# Catálogo de livros, que mostra ano, autor, titulo e
+# se esta disponivel ou não, também deve poder adicionar
+# novos livros, pesquisar por autor e mostrar os disponiveis no final.
+#====================================================
 
-# ---- NÍVEL BÁSICO ----
+# Lista dos livros salvos na biblioteca, onde salva nome, autor, ano e se esta disponivel
+catalogo = [
+    {"titulo": "Dom Casmurro", "autor": "Machado de Assis", "ano": 1899, "disponivel": True},
+    {"titulo": "1984", "autor": "George Orwell", "ano": 1949, "disponivel": False},
+    {"titulo": "O Hobbit", "autor": "J.R.R. Tolkien", "ano": 1937, "disponivel": True}
+]
 
-def calcular_media(nota1, nota2):
-    """Calcula e retorna a média aritmética de duas notas."""
-    media = (nota1 + nota2) / 2
-    return media
+# --- CADASTRO DE NOVO LIVRO ---
+print("=" *49)
+print("-" *15, "CADASTRO DE LIVRO", "-" *15)
+print("=" *49)
+novo_titulo = input("Título: ")
+novo_autor = input("Autor: ")
+novo_ano = int(input("Ano: "))
 
-def verificar_situacao(media):
-    """Verifica e retorna a situação do aluno com base na média.
-    
-    Critérios IFPR:
-    ≥ 6.0  → Aprovado
-    4.0 até 5.9 → Recuperação
-    < 4.0 → Reprovado
-    """
-    if media >= 6.0:
-        return "Aprovado"
-    elif media >= 4.0:
-        return "Recuperação"
-    else:
-        return "Reprovado"
+# Adicionando o novo livro com o status de diponível
+catalogo.append({
+    "titulo": novo_titulo, 
+    "autor": novo_autor, 
+    "ano": novo_ano, 
+    "disponivel": True
+})
 
-# ---- NÍVEL INTERMEDIÁRIO ----
+# --- EXIBIÇÃO E BUSCA POR AUTOR ---
+print("\n" + "=" *48)
+print(f"-------- CATÁLOGO ATUALIZADO ({len(catalogo)} livros) --------")
+print("=" *48)
+for livro in catalogo:
+    status = "Disponível" if livro["disponivel"] else "Emprestado"
+    print(f"- {livro['titulo']} ({livro['autor']}, {livro['ano']}) | Status: {status}")
 
-def solicitar_notas(nome_aluno):
-    """Solicita e valida as notas de um aluno (0-10).
-    
-    Retorna uma tupla com as duas notas validadas.
-    """
-    print(f"\n--- Notas de {nome_aluno} ---")
-    
-    # Valida primeira nota
-    while True:
-        try:
-            nota1 = float(input(f"Nota 1 (0-10): "))
-            if 0 <= nota1 <= 10:
-                break
-            else:
-                print("❌ Nota deve estar entre 0 e 10!")
-        except ValueError:
-            print("❌ Digite um número válido!")
-    
-    # Valida segunda nota
-    while True:
-        try:
-            nota2 = float(input(f"Nota 2 (0-10): "))
-            if 0 <= nota2 <= 10:
-                break
-            else:
-                print("❌ Nota deve estar entre 0 e 10!")
-        except ValueError:
-            print("❌ Digite um número válido!")
-    
-    return nota1, nota2
+print("\n" + "=" *35)
+print("--------- BUSCA POR AUTOR ---------")
+print("=" *35)
+busca_autor = input("Digite o nome do autor para buscar: ").strip().lower()
+encontrados = [l for l in catalogo if busca_autor in l["autor"].lower()]
 
-def gerar_relatorio(nome, media, situacao):
-    """Exibe um relatório formatado com os dados do aluno.
-    
-    Recebe como parâmetros o nome, média e situação
-    do aluno (sem usar variáveis globais).
-    """
-    print("\n" + "=" * 50)
-    print(f"📋 RESULTADO - {nome.upper()}")
-    print("=" * 50)
-    print(f"  Média        : {media:.2f}")
-    print(f"  Situação     : {situacao}")
-    
-    # Emoji de status
-    if situacao == "Aprovado":
-        emoji = "✅"
-    elif situacao == "Recuperação":
-        emoji = "⚠️"
-    else:
-        emoji = "❌"
-    
-    print(f"  Status       : {emoji}")
-    print("=" * 50)
+if encontrados:
+    for l in encontrados:
+        print(f"Encontrado: {l['titulo']} - {l['autor']}")
+else:
+    print("Nenhum livro encontrado para este autor.")
 
-def processar_aluno(nome_aluno):
-    """Processa um aluno: solicita notas, calcula média e exibe relatório."""
-    nota1, nota2 = solicitar_notas(nome_aluno)
-    media = calcular_media(nota1, nota2)
-    situacao = verificar_situacao(media)
-    gerar_relatorio(nome_aluno, media, situacao)
+# --- 4. SISTEMA DE EMPRÉSTIMO / DEVOLUÇÃO ---
+print("\n" + "="*46)
+print("------ REGISTRO DE EMPRÉSTIMO/DEVOLUÇÃO ------")
+print("="*46)
+titulo_busca = input("Digite o título exato do livro para alterar o status: ").strip().lower()
+livro_localizado = False
 
-# ---- EXECUÇÃO PRINCIPAL ----
+for livro in catalogo:
+    if livro["titulo"].lower() == titulo_busca:
+        # Inverte o status: True vira False, False vira True
+        livro["disponivel"] = not livro["disponivel"]
+        novo_status = "Disponível" if livro["disponivel"] else "Emprestado"
+        print(f"Sucesso! O status de '{livro['titulo']}' agora é: {novo_status}")
+        livro_localizado = True
+        break
 
-if __name__ == "__main__":
-    print("=" * 50)
-    print("  SISTEMA DE CÁLCULO DE NOTAS - IFPR")
-    print("=" * 50)
-    
-    # Lista de alunos a processar
-    alunos = ["Ana Silva", "Bruno Costa", "Carlos Santos"]
-    
-    # Processa cada aluno
-    for aluno in alunos:
-        processar_aluno(aluno)
-    
-    print("\n✅ Processamento concluído!")
+if not livro_localizado:
+    print("Erro: Título não encontrado no sistema.")
+
+# --- RELATÓRIO FINAL ---
+print("\n" + "="*30)
+print("RELATÓRIO FINAL DA BIBLIOTECA")
+print("="*30)
+
+total = len(catalogo)
+disponiveis = sum(1 for l in catalogo if l["disponivel"])
+emprestados = total - disponiveis
+lista_emprestados = [l["titulo"] for l in catalogo if not l["disponivel"]]
+
+print(f"Total de livros: {total}")
+print(f"Disponíveis: {disponiveis}")
+print(f"Emprestados: {emprestados}")
+if lista_emprestados:
+    print(f"Títulos Atualmente Emprestados: {', '.join(lista_emprestados)}")
+print("="*30)
