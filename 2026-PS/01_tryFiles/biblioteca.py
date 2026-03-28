@@ -37,7 +37,7 @@ def salvar_catalogo(catalogo):
             for livro in catalogo:
                 linha = f"{livro['titulo']}{SEPARADOR}{livro['autor']}{SEPARADOR}{livro['disponivel']}\n"
                 f.write(linha)
-        print("✅ Catálogo salvo em '{ARQUIVO}'.")
+        print(f"✅ Catálogo salvo em '{ARQUIVO}'.")
     except IOError as e:
         #IOError: disco cheio, permissão negada, etc.
         print(f"❌ Erro ao salvar: {e}")
