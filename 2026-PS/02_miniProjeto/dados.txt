@@ -1,3 +1,1 @@
-gUstavo maciel|14/04/2010|g@gmail.com|1234|VIP
-Alicides M|12/03/2010|a@gmail.com|1234|Estudante
-Joao|14/04/2011|j@gmail.com|1234|Comum
+gustavo|16/03/2010|gustavoeocaramaislindodaescola@gmail.com|123456|Comum

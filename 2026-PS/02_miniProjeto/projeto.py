@@ -184,6 +184,7 @@ def mostrar_usuarios():
 
 # Menu
 while True:
+    print("=== SISTEMA DE CADASTRO DE EVENTOS ===")
     print("1 - Cadastrar")
     print("2 - Login")
     print("3 - Mostrar usuários")
