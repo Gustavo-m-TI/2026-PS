@@ -97,8 +97,12 @@ class Pet:  # Define a classe Pet para representar um animal de estimação
             return 50.00
         elif self.idade <= 10:
             return 60.00
+        elif self.idade <= 15:
+            return 70.00
+        elif self.idade <= 500:
+            return 100.00
         else:
-            return 75.00
+            return 1000.00
 
     def verificar_vacinacao(self):
         '''
@@ -154,8 +158,8 @@ class Pet:  # Define a classe Pet para representar um animal de estimação
 '''
 
 pet1 = Pet("Rex", "Cachorro", 5, 25.0, "João Silva", True, "Muito brincalhão")
-pet2 = Pet("Clepton", "Monstro do lago Ness", 3000, 87000.0, "Rei Arthur", True, "Gosta de derrubar embarcações")
-pet3 = Pet("Bruu Bruu Patapim", "Guardião da floresta", 10000000, 1000.0, "Thung Thung Thung Sahur", True, "Gosta de matar lenhadores e caçadores")
+pet2 = Pet("Clepton", "Monstro do lago Ness", 3000, 87000.5, "Rei Arthur", True, "Gosta de derrubar embarcações")
+pet3 = Pet("Bruu Bruu Patapim", "Guardião da floresta", 10000000, 1000.6, "Thung Thung Thung Sahur", True, "Gosta de matar lenhadores e caçadores")
 
 print("=== Teste dos Pets ===")
 
