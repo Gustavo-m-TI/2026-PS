@@ -1,2 +1,3 @@
 Luiz Carlos|17/07/2010|luiz.goat@gmail.com|1|Psicologia|17/07/2026|17:00
 Berssanete|14/09/2006|bersa.goat@gmail.com|2|Cardiologia|04/04/2026|13:00
+Atila|16/04/2009|a@gmail.com|123456|Psicologia|18/06/2026|16:00

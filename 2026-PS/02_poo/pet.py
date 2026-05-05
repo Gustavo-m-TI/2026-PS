@@ -9,7 +9,7 @@
 ================================================================
 '''
 
-class Pet:
+class Pet:  # Define a classe Pet para representar um animal de estimação
     '''
     Esta classe representa um Pet em um sistema simples de hotel para para pets.
 
@@ -18,7 +18,7 @@ class Pet:
     dentro de uma classe.
     '''
 
-    def __init__(self, nome, especie, idade, peso, nome_dono, vacinado, observacoes):
+    def __init__(self, nome, especie, idade, peso, nome_dono, vacinado, observacoes):  # Método construtor da classe, chamado ao criar um objeto Pet
         '''
         Método construtor.
 
@@ -37,66 +37,37 @@ class Pet:
         - observacoes: observações sobre o pet
         '''
 
-        self.nome = nome
-        self.especie = especie
-        self.idade = idade
-        self.hospedado = False
-        self.peso = peso
-        self.nome_dono = nome_dono
-        self.vacinado = vacinado
-        self.observacoes = observacoes
+        self.nome = nome  # Atribui o nome do pet ao atributo da instância
+        self.especie = especie  # Atribui a espécie do pet ao atributo da instância
+        self.idade = idade  # Atribui a idade do pet ao atributo da instância
+        self.hospedado = False  # Inicializa o status de hospedagem como falso (não hospedado)
+        self.peso = peso  # Atribui o peso do pet ao atributo da instância
+        self.nome_dono = nome_dono  # Atribui o nome do dono ao atributo da instância
+        self.vacinado = vacinado  # Atribui o status de vacinação ao atributo da instância
+        self.observacoes = observacoes  # Atribui as observações sobre o pet ao atributo da instância
 
 
-        '''
-        # ============================================================
-        # ATIVIDADE 1:
-        # Adicione pelo menos 3 novos atributos para o pet.
-        #
-        # Sugestões:
-        # self.raca
-        # self.peso
-        # self.nome_dono
-        # self.telefone_dono
-        # self.vacinado
-        # self.observacoes
-        #
-        # Atenção:
-        # Se você adicionar novos atributos, também precisará alterar
-        # os parâmetros do __init__.
-        # ============================================================
-        '''
-
-    def exibir_dados(self):
+    def exibir_dados(self):  # Método para exibir os dados do pet
         '''
         Exibe os dados principais do pet.
 
-        Atualmente, mostra apenas nome, espécie, idade e status de
-        hospedagem.
-
-        ATIVIDADE:
-        Modifique este método para exibir também os novos atributos
-        que você adicionou no __init__.
         '''
 
-        print("\n--- Dados do Pet ---")
-        print(f"Nome: {self.nome}")
-        print(f"Espécie: {self.especie}")
-        print(f"Idade: {self.idade}")
-        print(f"Peso: {self.peso} kg")
-        print(f"Dono: {self.nome_dono}")
-        print(f"Vacinado: {'Sim' if self.vacinado else 'Não'}")
-        print(f"Observações: {self.observacoes}")
-        print(f"Hospedado: {'Sim' if self.hospedado else 'Não'}")
+        print("\n--- Dados do Pet ---")  # Imprime um cabeçalho para os dados do pet
+        print(f"Nome: {self.nome}")  # Imprime o nome do pet
+        print(f"Espécie: {self.especie}")  # Imprime a espécie do pet
+        print(f"Idade: {self.idade}")  # Imprime a idade do pet
+        print(f"Peso: {self.peso} kg")  # Imprime o peso do pet em kg
+        print(f"Dono: {self.nome_dono}")  # Imprime o nome do dono
+        print(f"Vacinado: {'Sim' if self.vacinado else 'Não'}")  # Imprime se o pet está vacinado (Sim ou Não)
+        print(f"Observações: {self.observacoes}")  # Imprime as observações sobre o pet
+        print(f"Hospedado: {'Sim' if self.hospedado else 'Não'}")  # Imprime se o pet está hospedado (Sim ou Não)
 
-    def registrar_entrada(self):
+    def registrar_entrada(self):  # Método para registrar a entrada do pet no hotel
         '''
         Registra a entrada do pet no hotel.
 
         Se o pet ainda não estiver hospedado, muda o atributo hospedado para True
-        
-        ATIVIDADE:
-        Melhore este método para verificar se o pet já está hospedado.
-        Se já estiver, mostre uma mensagem avisando.
         '''
 
         if self.hospedado:
@@ -108,12 +79,6 @@ class Pet:
     def registrar_saida(self):
         '''
         Registra a saída do pet do hotel.
-
-        Se o pet estiver hospedado, muda o atributo hospedado para False
-        
-        ATIVIDADE:
-        Melhore este método para verificar se o pet já está hospedado.
-        Se não estiver, mostre uma mensagem avisando.
         '''
 
         if not self.hospedado:
@@ -125,15 +90,6 @@ class Pet:
     def calcular_diaria(self):
         '''
         Calcula o valor da diária para o pet.
-
-        ATIVIDADE:
-        Implemente uma regra simples para calcular a diária.
-        
-        Sugestão:
-        - Pet com idade até 3 anos: R$ 50,00
-        - Pet com idade entre 4 e 10 anos: R$ 60,00
-        - Pet com mais de 10 anos: R$ 75,00
-        
         Este método deve retornar o valor da diária.
         '''
 
@@ -147,16 +103,6 @@ class Pet:
     def verificar_vacinacao(self):
         '''
         Verifica se o pet está vacinado.
-
-        ATIVIDADE:
-        Para este metódo funcionar, você precisa criar um atributo 
-        chamado self.vacinado no __init__.
-            
-        Se o pet estiver vacinado, exiba:
-        "Vacinação em dia."
-            
-        Caso contrário, exiba:
-        "Atenção: Vacinação pendente."
         '''
 
         if self.vacinado:
@@ -168,14 +114,6 @@ class Pet:
         '''
         Atualiza o peso do pet.
 
-        ATIVIDADE:
-        Para este método funcionar, você precisa criar um atributo
-        chamado self.peso no __init__.
-
-        O método deve receber um novo peso e atualizar o valor antigo.
-
-        Exemplo:
-        pet1.atualizar_peso(12.5)
         '''
 
         self.peso = novo_peso
@@ -184,17 +122,6 @@ class Pet:
     def emitir_resumo(self):
         '''
         Exibe um resumo geral do pet.
-
-        ATIVIDADE:
-        Crie uma mensagem organizada contendo:
-        - nome do pet
-        - espécie
-        - idade
-        - nome do dono
-        - peso
-        - status de vacinação
-        - status de hospedagem
-        - valor da diária
 
         Este método deve usar informações dos atributos e também pode
         chamar outros métodos, como calcular_diaria().
@@ -227,8 +154,8 @@ class Pet:
 '''
 
 pet1 = Pet("Rex", "Cachorro", 5, 25.0, "João Silva", True, "Muito brincalhão")
-pet2 = Pet("Mia", "Gato", 2, 4.5, "Maria Oliveira", False, "Gosta de dormir no sol")
-pet3 = Pet("Buddy", "Cachorro", 8, 30.0, "Carlos Santos", True, "Adora passear")
+pet2 = Pet("Clepton", "Monstro do lago Ness", 3000, 87000.0, "Rei Arthur", True, "Gosta de derrubar embarcações")
+pet3 = Pet("Bruu Bruu Patapim", "Guardião da floresta", 10000000, 1000.0, "Thung Thung Thung Sahur", True, "Gosta de matar lenhadores e caçadores")
 
 print("=== Teste dos Pets ===")
 
@@ -241,7 +168,7 @@ pet1.emitir_resumo()
 print("\n--- Pet 2 ---")
 pet2.exibir_dados()
 pet2.verificar_vacinacao()
-pet2.atualizar_peso(5.0)
+pet2.atualizar_peso(90000.0)
 pet2.emitir_resumo()
 
 print("\n--- Pet 3 ---")

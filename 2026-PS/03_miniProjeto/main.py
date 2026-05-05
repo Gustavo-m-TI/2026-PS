@@ -145,7 +145,7 @@ def calcular_idade(nasc):
 # ------------------ GERAR DATA/HORA ------------------
 def gerar_data_hora():
     dia = random.randint(1, 28) # dado no formato INT,
-    mes = random.randint(4, 12)
+    mes = random.randint(5, 12)
     ano = 2026 # variavel com INT
     hora = random.randint(8, 17)
 
