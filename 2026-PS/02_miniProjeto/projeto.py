@@ -14,7 +14,6 @@
 # e os salva no mesmo arquivo. Ele valida e-mail, nome, data de nascimento, senha e tipo do ingresso.
 # ===================================================
 
-import json
 import random
 import re
 import os

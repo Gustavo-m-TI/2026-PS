@@ -160,6 +160,7 @@ class Pet:  # Define a classe Pet para representar um animal de estimação
 pet1 = Pet("Rex", "Cachorro", 5, 25.0, "João Silva", True, "Muito brincalhão")
 pet2 = Pet("Clepton", "Monstro do lago Ness", 3000, 87000.5, "Rei Arthur", True, "Gosta de derrubar embarcações")
 pet3 = Pet("Bruu Bruu Patapim", "Guardião da floresta", 10000000, 1000.6, "Thung Thung Thung Sahur", True, "Gosta de matar lenhadores e caçadores")
+pet4 = Pet("Little Neguinha", "Exu neginha", 16, 56.7, "Ellis", True, "Gosta de macumba")
 
 print("=== Teste dos Pets ===")
 
@@ -181,3 +182,9 @@ pet3.registrar_entrada()
 pet3.emitir_resumo()
 pet3.registrar_saida()
 pet3.registrar_saida()  # teste de saída quando não está hospedado
+
+print("\n--- Pet 4 ---")
+pet4.exibir_dados()
+pet4.verificar_vacinacao()
+pet4.atualizar_peso(57.0)
+pet4.emitir_resumo()

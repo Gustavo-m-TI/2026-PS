@@ -1,0 +1,1 @@
+Mutano;Metamorfo;16;54.3;Robin;True;Vegetariano;False;True
