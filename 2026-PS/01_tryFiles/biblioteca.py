@@ -143,8 +143,8 @@ def devolver_livro(catalogo):
     except IndexError:
         print("❌  Número fora da lista. Verifique os livros cadastrados.")
 
-def menu():
-    print("\n📚 SISTEMA DE BIBLIOTECA - v1 (em memória)")
+def menu(catalogo):
+    print("\n📚 SISTEMA DE BIBLIOTECA - v1")
 
     opcoes = {
         "1": ("Listar livros",        listar_livros),
@@ -176,7 +176,7 @@ def menu():
                 break
             
             _, funcao = opcoes[escolha]
-            funcao()
+            funcao(catalogo)
 
         finally:
             # Executado SEMPRE — com ou sem exceção
@@ -185,5 +185,7 @@ def menu():
 
 
 if __name__ == "__main__":
-    menu()
+    catalogo = carregar_catalogo()
+    menu(catalogo)
+    salvar_catalogo(catalogo)
 

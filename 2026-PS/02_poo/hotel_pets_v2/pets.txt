@@ -1,1 +1,2 @@
 Mutano;Metamorfo;16;54.3;Robin;True;Vegetariano;False;True
+Rodrigo;Negro;16;50.4;Luis Otavio;True;Gosta de roubar;False;True
