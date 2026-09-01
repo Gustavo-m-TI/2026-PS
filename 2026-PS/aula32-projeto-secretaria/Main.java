@@ -100,7 +100,7 @@ public class Main {
             System.out.println("--- FICHAS NO GAVETEIRO: " + lista.size() + " ---");
 
             for (Aluno aluno : lista) {
-                System.out.println(aluno.getMatricula() + " | " + aluno.getNome() + " | " + aluno.getCurso() + " | " + aluno.getCidade());
+                System.out.println(aluno);
             }
         }
     }
@@ -126,7 +126,7 @@ public class Main {
         if (a == null) {
             System.out.println("Nenhuma ficha com a matricula " + matricula + ".");
         } else {
-            System.out.println("Achei: " + a.getMatricula() + " | " + a.getNome() + " | " + a.getCurso());
+            System.out.println("Achei: " + a);
         }
     }
     // Atualizar reusa a busca: escrever uma vez, chamar quantas vezes precisar.
@@ -144,7 +144,7 @@ public class Main {
         // a variavel a segura a MESMA ficha que esta na lista: mudar por
         // aqui muda o que a listagem mostra depois. Nao precisa reinserir.
         a.setCurso(novoCurso);
-        System.out.println("Ficha atualizada: " + a.getMatricula() + " | " + a.getNome() + " | " + a.getCurso());
+        System.out.println("Ficha atualizada: " + a);
     }
 
     // Acao destrutiva pede confirmacao. Padrao de sistema de verdade.

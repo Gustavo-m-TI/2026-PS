@@ -57,4 +57,9 @@ public class Aluno {
 
     }
 
+    @Override
+    public String toString() {
+        return matricula + " | " + nome + " | " + curso + " | " + cidade;
+    }
+
 }
