@@ -33,6 +33,7 @@ public class Main {
             System.out.println("[3] Buscar por matricula");
             System.out.println("[4] Atualizar curso");
             System.out.println("[5] Remover aluno");
+            System.out.println("[6] Relatorio");
             System.out.println("[0] Sair");
             System.out.print("Sua escolha: ");
             String opcao = teclado.nextLine().trim();
@@ -45,14 +46,16 @@ public class Main {
                 cadastrar(lista, teclado);
             } else if (opcao.equals("2")) {
                 listar(lista);
-            } else if (opcao.equals("3")){
+            } else if (opcao.equals("3")) {
                 buscar(lista, teclado);
-            } else if (opcao.equals("4")){
+            } else if (opcao.equals("4")) {
                 atualizar(lista, teclado); 
-            } else if (opcao.equals("5")){
+            } else if (opcao.equals("5")) {
                 remover(lista, teclado);
+            } else if (opcao.equals("6")) {
+                relatorio(lista, teclado); 
             } else {
-                System.out.println("Opcao invalida! Vale 0, 1, 2, 3, 4 ou 5.");
+                System.out.println("Opcao invalida! Vale 0, 1, 2, 3, 4, 5 ou 6.");
             }
         }
     }
@@ -165,5 +168,24 @@ public class Main {
             System.out.println("Remocao cancelada.");
         }
     }
+
+    static void relatorio(ArrayList<Aluno> lista, Scanner teclado) {
+        System.out.println("--- RELATORIO DA SECRETARIA ---");
+        System.out.println("Total de fichas: " + lista.size());
+        System.out.print("Contar alunos de qual curso? ");
+        String curso = teclado.nextLine().trim();
+
+        int contador = 0;                    // preparar (ANTES do for)
+        for (int i = 0; i < lista.size(); i++) {    // percorrer
+            Aluno a = lista.get(i);
+
+            if (a.getCurso().equals(curso)) {
+            contador = contador + 1;
+            }
+        }
+
+        System.out.println("Alunos de " + curso + ": " + contador);    // usar
+    }
+
 
 } 
