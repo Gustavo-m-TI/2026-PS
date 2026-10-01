@@ -38,7 +38,7 @@ public class Leitor extends Usuario {
     }
 
     public String toString() {
-        return "Leitor " + getNome() + " (" + getMatricula() + ") - "
+        return "Leitor " + super.toString() + " - "
                 + livrosEmMaos + " de " + limiteEmprestimos + " livros";
     }
 
