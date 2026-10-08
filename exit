@@ -1,0 +1,53 @@
+[1mdiff --git a/.devcontainer/devcontainer.json b/.devcontainer/devcontainer.json[m
+[1mindex 535bce3..4e3ba53 100644[m
+[1m--- a/.devcontainer/devcontainer.json[m
+[1m+++ b/.devcontainer/devcontainer.json[m
+[36m@@ -1,10 +1,20 @@[m
+ {[m
+   "name": "2026-PS - Java 21",[m
+   "image": "mcr.microsoft.com/devcontainers/java:21",[m
+[32m+[m[32m  "features": {[m
+[32m+[m[32m    "ghcr.io/devcontainers/features/desktop-lite:1": {}[m
+[32m+[m[32m  },[m
+[32m+[m[32m  "forwardPorts": [6080],[m
+[32m+[m[32m  "portsAttributes": {[m
+[32m+[m[32m    "6080": {[m
+[32m+[m[32m      "label": "Desktop BiblioTech",[m
+[32m+[m[32m      "onAutoForward": "notify"[m
+[32m+[m[32m    }[m
+[32m+[m[32m  },[m
+   "customizations": {[m
+     "vscode": {[m
+       "extensions": ["vscjava.vscode-java-pack"],[m
+       "settings": { "editor.tabSize": 4, "files.eol": "\n" }[m
+     }[m
+   }[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/bibliotech/Biblioteca.class b/bibliotech/Biblioteca.class[m
+[1mindex 3229494..1cffabf 100644[m
+Binary files a/bibliotech/Biblioteca.class and b/bibliotech/Biblioteca.class differ
+[1mdiff --git a/bibliotech/Biblioteca.java b/bibliotech/Biblioteca.java[m
+[1mindex 437317e..4d1c38d 100644[m
+[1m--- a/bibliotech/Biblioteca.java[m
+[1m+++ b/bibliotech/Biblioteca.java[m
+[36m@@ -82,4 +82,17 @@[m [mpublic class Biblioteca {[m
+             System.out.println(emprestimos.get(i));[m
+         }[m
+     }[m
+[32m+[m
+[32m+[m[32m     // Fornece uma descricao do acervo para a interface.[m
+[32m+[m[32m    public String obterAcervoComoTexto() {[m
+[32m+[m[32m        if (livros.isEmpty()) {[m
+[32m+[m[32m            return "Nenhum livro cadastrado.";[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        String texto = "";[m
+[32m+[m[32m        for (int i = 0; i < livros.size(); i++) {[m
+[32m+[m[32m            texto = texto + livros.get(i) + "\n";[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return texto;[m
+[32m+[m[32m    }[m
+ }[m
+\ No newline at end of file[m
