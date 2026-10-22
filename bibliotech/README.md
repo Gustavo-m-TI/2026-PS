@@ -86,13 +86,14 @@ java TelaBiblioteca
 - Guardar os dados: ao fechar o programa, os emprestimos se perdem.
 
 ## 9. Persistência de Dados
-Banco de dados utilizado
+
+### Banco de dados utilizado
 
 O BiblioTech utiliza o MariaDB como sistema gerenciador de banco de dados (SGBD). O banco utilizado pela aplicação chama-se bibliotech, e a tabela livros armazena as informações dos livros cadastrados.
 
 A conexão é realizada por meio do JDBC, utilizando o driver do MariaDB.
 
-Classe Conexao
+### Classe Conexao
 
 A classe Conexao é responsável por estabelecer a conexão entre a aplicação Java e o banco de dados MariaDB.
 
@@ -100,21 +101,22 @@ O método conectar() obtém as credenciais por meio das variáveis de ambiente D
 
 Caso as variáveis não estejam configuradas, o método lança uma exceção SQLException informando que as credenciais precisam ser definidas.
 
-Classe LivroDAO
+### Classe LivroDAO
 
 A classe LivroDAO é responsável pela persistência dos dados dos livros, utilizando o padrão DAO (Data Access Object). Ela executa comandos SQL para inserir, atualizar e excluir registros na tabela livros.
 
 A classe utiliza PreparedStatement para executar os comandos SQL com parâmetros e fecha automaticamente os recursos utilizados por meio do try-with-resources.
 
-Métodos implementados
-Método	Funcionalidade
-adicionarLivro(String titulo, String autor, int ano)	Insere um novo livro na tabela livros. Retorna true se alguma linha for inserida e false se ocorrer um erro ou nenhuma linha for afetada.
-atualizarLivro(int id, String titulo, String autor, int ano)	Atualiza o título, o autor e o ano de um livro identificado pelo seu id. Retorna true se alguma linha for alterada e false caso contrário.
-excluirLivro(int id)	Exclui o livro identificado pelo id. Retorna true se alguma linha for removida e false caso contrário.
+### Métodos implementados
+| Método |	Funcionalidade |
+| --- | --- |
+| adicionarLivro(String titulo, String autor, int ano) |	Insere um novo livro na tabela livros. Retorna true se alguma linha for inserida e false se ocorrer um erro ou nenhuma linha for afetada. |
+| atualizarLivro(int id, String titulo, String autor, int ano)	| Atualiza o título, o autor e o ano de um livro identificado pelo seu id. Retorna true se alguma linha for alterada e false caso contrário. |
+| excluirLivro(int id)	| Exclui o livro identificado pelo id. Retorna true se alguma linha for removida e false caso contrário. |
 
 Em caso de erro de SQL, os métodos exibem uma mensagem no terminal e retornam false.
 
-Configuração das variáveis de ambiente
+### Configuração das variáveis de ambiente
 
 A aplicação utiliza as variáveis de ambiente DB_USER e DB_PASSWORD para acessar o banco de dados. Essa abordagem evita armazenar as credenciais diretamente no código-fonte.
 
@@ -136,7 +138,7 @@ As variáveis definidas com export ficam disponíveis no terminal atual e nos pr
 
 Antes de executar os testes, certifique-se de que o MariaDB está em execução, que o banco bibliotech existe, que a tabela livros foi criada e que o driver JDBC do MariaDB está disponível no classpath.
 
-Como executar o teste de conexão
+### Como executar o teste de conexão
 
 Execute a classe de teste de conexão existente no projeto. Se ela se chamar TesteConexao, por exemplo, compile os arquivos e execute:
 
@@ -148,7 +150,7 @@ O teste deve chamar Conexao.conectar() para verificar se a aplicação consegue 
 
 O nome TesteConexao é apenas um exemplo: utilize o nome real da classe de teste existente no repositório.
 
-Como executar os testes de persistência
+### Como executar os testes de persistência
 
 Execute a classe de teste de persistência existente no projeto. Se ela se chamar TesteLivroDAO, por exemplo:
 
