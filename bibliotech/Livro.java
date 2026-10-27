@@ -1,3 +1,4 @@
+
 /*
  * Disciplina: 2026-PS
  * Projeto   : bibliotech
@@ -7,17 +8,37 @@
  */
 public class Livro {
 
-    // ATRIBUTOS: a faixa do meio da caixa, um por linha, todos private.
+    // ATRIBUTOS
+    private int id;
     private String titulo;
     private String autor;
     private int ano;
-    private boolean disponivel;  // nao estava na caixa: o codigo pediu
+    private boolean disponivel;
 
+    // CONSTRUTOR
     public Livro(String titulo, String autor, int ano) {
         this.titulo = titulo;
         this.autor = autor;
         this.ano = ano;
         this.disponivel = true;
+    }
+
+    public Livro(int id, String titulo,
+             String autor, int ano) {
+
+        this.id = id;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.ano = ano;
+    }
+
+    // GETTERS E SETTERS
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -35,8 +56,8 @@ public class Livro {
     public boolean estaDisponivel() {
         return disponivel;
     }
-    
-    // Os dois metodos que o emprestimo vai usar na Aula 38.
+
+    // METODOS DE EMPRESTIMO E DEVOLUCAO
     public void emprestar() {
         this.disponivel = false;
     }
@@ -45,10 +66,9 @@ public class Livro {
         this.disponivel = true;
     }
 
-    // toString: como a ficha se apresenta (Aula 34).
+    // TOSTRING
     public String toString() {
         String situacao = disponivel ? "disponivel" : "emprestado";
         return titulo + " (" + autor + ", " + ano + ") - " + situacao;
     }
-
 }
