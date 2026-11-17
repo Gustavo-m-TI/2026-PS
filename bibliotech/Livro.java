@@ -14,6 +14,7 @@ public class Livro {
     private String autor;
     private int ano;
     private boolean disponivel;
+    private String capa;
 
     // CONSTRUTOR
     public Livro(String titulo, String autor, int ano) {
@@ -24,7 +25,7 @@ public class Livro {
     }
 
     public Livro(int id, String titulo,
-             String autor, int ano) {
+            String autor, int ano) {
 
         this.id = id;
         this.titulo = titulo;
@@ -70,5 +71,14 @@ public class Livro {
     public String toString() {
         String situacao = disponivel ? "disponivel" : "emprestado";
         return titulo + " (" + autor + ", " + ano + ") - " + situacao;
+    }
+
+
+    public String getCapa() {
+        return capa;
+    }
+
+    public void setCapa(String capa) {
+        this.capa = capa;
     }
 }
