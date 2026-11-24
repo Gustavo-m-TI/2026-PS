@@ -21,13 +21,10 @@ public class TelaLivros extends JFrame {
                 setTitle("BiblioTech - Consulta de Livros");
                 setSize(850, 450);
                 setLocationRelativeTo(null);
-
                 setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
                 setLayout(new BorderLayout(8, 8));
 
-                getContentPane().setBackground(
-                                new Color(245, 240, 255));
+                getContentPane().setBackground(new Color(245, 240, 255));
 
                 modelo = new DefaultTableModel(
                                 new Object[] { "ID", "Capa", "Título", "Autor", "Ano" }, 0) {
@@ -53,7 +50,6 @@ public class TelaLivros extends JFrame {
                                 new Color(109, 40, 217));
 
                 tabela.getTableHeader().setForeground(Color.WHITE);
-
                 tabela.setFillsViewportHeight(true);
 
                 DefaultTableCellRenderer centralizar = new DefaultTableCellRenderer();
@@ -101,12 +97,12 @@ public class TelaLivros extends JFrame {
                 tabela.getColumnModel().getColumn(1).setPreferredWidth(90);
 
                 tabela.getColumnModel()
-                    .getColumn(1)
-                    .setCellRenderer(
-                        new javax.swing.table.DefaultTableCellRenderer() {
+                                .getColumn(1)
+                                .setCellRenderer(
+                                                new DefaultTableCellRenderer() {
 
-                                @Override
-                                public java.awt.Component getTableCellRendererComponent(
+                                                        @Override
+                                                        public Component getTableCellRendererComponent(
                                                                         JTable tabela,
                                                                         Object valor,
                                                                         boolean selecionada,
@@ -116,9 +112,7 @@ public class TelaLivros extends JFrame {
 
                                                                 JLabel label = new JLabel();
 
-                                                                label.setHorizontalAlignment(
-                                                                                JLabel.CENTER);
-
+                                                                label.setHorizontalAlignment(JLabel.CENTER);
                                                                 label.setOpaque(true);
 
                                                                 label.setBackground(
@@ -142,7 +136,6 @@ public class TelaLivros extends JFrame {
                 JButton mostrarTodos = criarBotao("Mostrar todos");
                 JButton botaoConsultar = criarBotao("Consultar livros");
                 JButton botaoBuscarTitulo = criarBotao("Buscar por título");
-
                 JButton botaoCapa = criarBotao("Selecionar capa");
 
                 // Pesquisa por título
@@ -279,15 +272,34 @@ public class TelaLivros extends JFrame {
         // Carregar todos os livros
         private void carregarLivros() {
 
-                modelo.setRowCount(0);
+                try {
 
-                List<Livro> livros = dao.listarLivros();
+                        List<Livro> livros = dao.listarLivros();
 
-                for (Livro livro : livros) {
-                        adicionarLinha(livro);
+                        modelo.setRowCount(0);
+
+                        for (Livro livro : livros) {
+                                adicionarLinha(livro);
+                        }
+
+                        status.setText(
+                                        "Livros encontrados: " + livros.size());
+
+                } catch (PersistenciaException e) {
+
+                        status.setText(
+                                        "Erro ao consultar o banco.");
+
+                        System.err.println(e.getMessage());
+                        e.printStackTrace();
+
+                        JOptionPane.showMessageDialog(
+                                        this,
+                                        "Não foi possível carregar os livros. " +
+                                                        "Verifique a conexão com o MariaDB.",
+                                        "Erro de conexão",
+                                        JOptionPane.ERROR_MESSAGE);
                 }
-
-                status.setText("Livros apresentados: " + livros.size());
         }
 
         // Adicionar livro na tabela
@@ -314,16 +326,23 @@ public class TelaLivros extends JFrame {
                         id = Integer.parseInt(texto);
 
                         if (id <= 0) {
-                                throw new NumberFormatException();
+                                throw new IllegalArgumentException(
+                                                "O ID deve ser positivo.");
                         }
 
-                } catch (NumberFormatException ex) {
+                } catch (NumberFormatException e) {
 
                         JOptionPane.showMessageDialog(
                                         this,
-                                        "Informe um ID inteiro positivo.",
-                                        "Entrada inválida",
-                                        JOptionPane.WARNING_MESSAGE);
+                                        "Informe um número inteiro válido.");
+
+                        return;
+
+                } catch (IllegalArgumentException e) {
+
+                        JOptionPane.showMessageDialog(
+                                        this,
+                                        e.getMessage());
 
                         return;
                 }
@@ -413,9 +432,10 @@ public class TelaLivros extends JFrame {
                 seletor.setDialogTitle(
                                 "Selecione a capa do livro");
 
-                seletor.setFileFilter(
-                                new javax.swing.filechooser.FileNameExtensionFilter(
-                                                "Imagens JPG e PNG", "jpg", "jpeg", "png"));
+                seletor.setCurrentDirectory(new java.io.File("/workspaces/2026-PS/bibliotech/imagens"));
+                //seletor.setFileFilter(
+                //new javax.swing.filechooser.FileNameExtensionFilter(
+                //"Imagens JPG e PNG", "jpg", "jpeg", "png"));
 
                 if (seletor.showOpenDialog(this) != JFileChooser.APPROVE_OPTION) {
                         return;
@@ -468,8 +488,8 @@ public class TelaLivros extends JFrame {
                 }
         }
 
-        private ImageIcon carregarMiniatura(
-                        String caminho) {
+        // Carregar miniatura da capa
+        private ImageIcon carregarMiniatura(String caminho) {
 
                 if (caminho == null || caminho.isBlank()) {
                         return null;

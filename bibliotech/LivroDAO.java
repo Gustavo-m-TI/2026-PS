@@ -11,6 +11,7 @@ public class LivroDAO {
 
     // Os métodos serão implementados aqui.
 
+
     public boolean adicionarLivro(
             String titulo,
             String autor,
@@ -21,8 +22,8 @@ public class LivroDAO {
             "VALUES (?, ?, ?)";
 
         try (Connection conexao = Conexao.conectar();
-            PreparedStatement comando =
-                conexao.prepareStatement(sql)) {
+             PreparedStatement comando =
+                 conexao.prepareStatement(sql)) {
 
             comando.setString(1, titulo);
             comando.setString(2, autor);
@@ -55,8 +56,8 @@ public class LivroDAO {
             "WHERE id = ?";
 
         try (Connection conexao = Conexao.conectar();
-            PreparedStatement comando =
-                conexao.prepareStatement(sql)) {
+             PreparedStatement comando =
+                 conexao.prepareStatement(sql)) {
 
             comando.setString(1, titulo);
             comando.setString(2, autor);
@@ -104,7 +105,8 @@ public class LivroDAO {
         }
     }
 
-    public List<Livro> listarLivros() {
+    public List<Livro> listarLivros()
+            throws PersistenciaException {
 
         List<Livro> livros = new ArrayList<>();
 
@@ -146,9 +148,9 @@ public class LivroDAO {
 
         } catch (SQLException e) {
 
-            System.out.println(
-                "Erro ao listar livros: " +
-                e.getMessage()
+            throw new PersistenciaException(
+                "Não foi possível consultar os livros.",
+                e
             );
         }
 
@@ -292,5 +294,4 @@ public class LivroDAO {
             return false;
         }
     }
-
 }
